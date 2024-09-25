@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://xml.amadeus.com/2010/06/TicketTypes_v2" targetNamespace="http://xml.amadeus.com/2010/06/TicketTypes_v2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.000" id="AMA2015F">
-  <xs:include schemaLocation="chameleon/AMA_Ticket_GTP_CommonTypes.xsd" />
-</xs:schema>
-
