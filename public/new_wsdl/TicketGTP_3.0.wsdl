@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://wsdl.amadeus.com/TicketGTP_v3" xmlns:ama_2010_06_TicketGTP_v3="http://xml.amadeus.com/2010/06/TicketGTP_v3" targetNamespace="http://wsdl.amadeus.com/TicketGTP_v3" name="TicketGTP_3.0">
+  <wsdl:documentation>Version 3.0</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema>
+      <xs:import namespace="http://xml.amadeus.com/2010/06/TicketGTP_v3" schemaLocation="AMA/2015F/AMA_TicketIgnoreRefundRQ.xsd" />
+      <xs:import namespace="http://xml.amadeus.com/2010/06/TicketGTP_v3" schemaLocation="AMA/2015F/AMA_TicketIgnoreRefundRS.xsd" />
+      <xs:import namespace="http://xml.amadeus.com/2010/06/TicketGTP_v3" schemaLocation="AMA/2015F/AMA_TicketInitRefundRQ.xsd" />
+      <xs:import namespace="http://xml.amadeus.com/2010/06/TicketGTP_v3" schemaLocation="AMA/2015F/AMA_TicketInitRefundRS.xsd" />
+      <xs:import namespace="http://xml.amadeus.com/2010/06/TicketGTP_v3" schemaLocation="AMA/2015F/AMA_TicketProcessRefundRQ.xsd" />
+      <xs:import namespace="http://xml.amadeus.com/2010/06/TicketGTP_v3" schemaLocation="AMA/2015F/AMA_TicketProcessRefundRS.xsd" />
+      <xs:import namespace="http://xml.amadeus.com/2010/06/TicketGTP_v3" schemaLocation="AMA/2015F/AMA_TicketUpdateRefundRQ.xsd" />
+      <xs:import namespace="http://xml.amadeus.com/2010/06/TicketGTP_v3" schemaLocation="AMA/2015F/AMA_TicketUpdateRefundRS.xsd" />
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="AMA_TicketIgnoreRefundRQ_3.000">
+    <wsdl:part name="body" element="ama_2010_06_TicketGTP_v3:AMA_TicketIgnoreRefundRQ" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TicketIgnoreRefundRS_3.000">
+    <wsdl:part name="body" element="ama_2010_06_TicketGTP_v3:AMA_TicketIgnoreRefundRS" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TicketInitRefundRQ_3.000">
+    <wsdl:part name="body" element="ama_2010_06_TicketGTP_v3:AMA_TicketInitRefundRQ" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TicketInitRefundRS_3.000">
+    <wsdl:part name="body" element="ama_2010_06_TicketGTP_v3:AMA_TicketInitRefundRS" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TicketProcessRefundRQ_3.000">
+    <wsdl:part name="body" element="ama_2010_06_TicketGTP_v3:AMA_TicketProcessRefundRQ" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TicketProcessRefundRS_3.000">
+    <wsdl:part name="body" element="ama_2010_06_TicketGTP_v3:AMA_TicketProcessRefundRS" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TicketUpdateRefundRQ_3.000">
+    <wsdl:part name="body" element="ama_2010_06_TicketGTP_v3:AMA_TicketUpdateRefundRQ" />
+  </wsdl:message>
+  <wsdl:message name="AMA_TicketUpdateRefundRS_3.000">
+    <wsdl:part name="body" element="ama_2010_06_TicketGTP_v3:AMA_TicketUpdateRefundRS" />
+  </wsdl:message>
+  <wsdl:portType name="TicketGTP_PT">
+    <wsdl:operation name="Ticket_IgnoreRefund">
+      <wsdl:documentation>Version 3.0</wsdl:documentation>
+      <wsdl:input message="tns:AMA_TicketIgnoreRefundRQ_3.000" />
+      <wsdl:output message="tns:AMA_TicketIgnoreRefundRS_3.000" />
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_InitRefund">
+      <wsdl:documentation>Version 3.0</wsdl:documentation>
+      <wsdl:input message="tns:AMA_TicketInitRefundRQ_3.000" />
+      <wsdl:output message="tns:AMA_TicketInitRefundRS_3.000" />
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_ProcessRefund">
+      <wsdl:documentation>Version 3.0</wsdl:documentation>
+      <wsdl:input message="tns:AMA_TicketProcessRefundRQ_3.000" />
+      <wsdl:output message="tns:AMA_TicketProcessRefundRS_3.000" />
+    </wsdl:operation>
+    <wsdl:operation name="Ticket_UpdateRefund">
+      <wsdl:documentation>Version 3.0</wsdl:documentation>
+      <wsdl:input message="tns:AMA_TicketUpdateRefundRQ_3.000" />
+      <wsdl:output message="tns:AMA_TicketUpdateRefundRS_3.000" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
+

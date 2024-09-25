@@ -26,6 +26,9 @@ const logout = () => {
                             <Link :href="route('dashboard')" class="inline-flex items-center border-b-2 border-transparent hover:border-gray-200 text-sm font-medium text-gray-900" :class="{ '!border-blue-500': $page.props.ziggy.route_name === 'dashboard' }">
                                 Dashboard
                             </Link>
+                            <Link :href="route('test-api')" class="inline-flex items-center border-b-2 border-transparent hover:border-gray-200 text-sm font-medium text-gray-900" :class="{ '!border-blue-500': $page.props.ziggy.route_name === 'test' }">
+                                Flights
+                            </Link>
                         </div>
                         <div class="hidden sm:flex sm:ml-6 space-x-8" v-if="!$page.props.auth.user">
                             <Link :href="route('auth.register')" class="inline-flex items-center border-b-2 border-transparent text-sm font-medium text-gray-900" v-if="$page.props.features.registration">

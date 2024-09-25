@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 rel. 2 sp2 (x64) (http://www.altova.com) by ﻿AMADEUS s.a.s. (AMADEUS s.a.s.) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://xml.amadeus.com/2010/06/TicketGTP_v3" xmlns:att="http://xml.amadeus.com/2010/06/TicketTypes_v2" xmlns:ota="http://www.opentravel.org/OTA/2003/05/OTA2010B" xmlns:ama="http://xml.amadeus.com/2010/06/Types_v2" targetNamespace="http://xml.amadeus.com/2010/06/TicketGTP_v3" elementFormDefault="qualified" attributeFormDefault="unqualified" version="3.000" id="AMA2015F">
+  <xs:import namespace="http://xml.amadeus.com/2010/06/Types_v2" schemaLocation="../2012F/AMA_CommonTypes_Proxy.xsd" />
+  <xs:import namespace="http://www.opentravel.org/OTA/2003/05/OTA2010B" schemaLocation="../../OTA/2010B/OTA_Proxy.xsd" />
+  <xs:import namespace="http://xml.amadeus.com/2010/06/TicketTypes_v2" schemaLocation="AMA_Ticket_GTP_CommonTypes_Proxy.xsd" />
+  <xs:element name="AMA_TicketProcessRefundRS">
+    <xs:annotation>
+      <xs:documentation>GTP commit refund client response</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:annotation>
+        <xs:documentation>Basic structure of any GTP webservice reply. Extend this type to implement a reply.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element name="GeneralReply">
+          <xs:complexType>
+            <xs:choice>
+              <xs:element name="Success">
+                <xs:complexType />
+              </xs:element>
+              <xs:element name="Errors" type="ama:GenericErrorsType" />
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="FunctionalData" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ContractBundle" maxOccurs="99">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:choice>
+                      <xs:sequence>
+                        <xs:element name="Success">
+                          <xs:complexType />
+                        </xs:element>
+                        <xs:element name="Warnings" type="ama:GenericWarningsType" minOccurs="0" />
+                      </xs:sequence>
+                      <xs:element name="Errors" type="ama:GenericErrorsType" />
+                    </xs:choice>
+                    <xs:element name="RefundDetails" type="att:RefundDetailsLightType" minOccurs="0" />
+                  </xs:sequence>
+                  <xs:attribute name="ID" type="xs:nonNegativeInteger" use="required">
+                    <xs:annotation>
+                      <xs:documentation>Identifies Success Element. Used for Update Refund query.</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="Code" type="ota:OTA_CodeType">
+                    <xs:annotation>
+                      <xs:documentation>In case of multi-provider refunds, this attribute is used to identify the provider corresponding to each success element.</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attributeGroup ref="ota:OTA_PayloadStdAttributes" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

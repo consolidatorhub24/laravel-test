@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 rel. 2 sp2 (x64) (http://www.altova.com) by ﻿AMADEUS s.a.s. (AMADEUS s.a.s.) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://xml.amadeus.com/2010/06/TicketGTP_v3" xmlns:att="http://xml.amadeus.com/2010/06/TicketTypes_v2" xmlns:ota="http://www.opentravel.org/OTA/2003/05/OTA2010B" xmlns:ama="http://xml.amadeus.com/2010/06/Types_v2" targetNamespace="http://xml.amadeus.com/2010/06/TicketGTP_v3" elementFormDefault="qualified" attributeFormDefault="unqualified" version="3.000" id="AMA2015F">
+  <xs:import namespace="http://xml.amadeus.com/2010/06/Types_v2" schemaLocation="../2012F/AMA_CommonTypes_Proxy.xsd" />
+  <xs:import namespace="http://www.opentravel.org/OTA/2003/05/OTA2010B" schemaLocation="../../OTA/2010B/OTA_Proxy.xsd" />
+  <xs:import namespace="http://xml.amadeus.com/2010/06/TicketTypes_v2" schemaLocation="AMA_Ticket_GTP_CommonTypes_Proxy.xsd" />
+  <xs:element name="AMA_TicketProcessRefundRQ">
+    <xs:annotation>
+      <xs:documentation>GTP commit refund client request</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ActionDetails" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">To convey refund option</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ActionDetail" maxOccurs="99">
+                <xs:complexType>
+                  <xs:attribute name="Indicator" type="att:AlphaNumericString_Length3To3" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RefundedItineraries" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">This default group is used to convey the refunded itinerary. The refunded itinerary is composed of the origin city/airport code, the flight operating airline code and the destination city/airport code. Origin and destination city/airport codes are contained in the ODI segment. Operating airline code is conveyed in the TRA segment. This default group can be repeated up to 16 times since a document can be composed of up to 16 coupons.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RefundedItinerary" type="att:RefundedItineraryType" maxOccurs="16" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PrinterReference" type="att:ReferenceInformationType" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">To convey the printer and stock + terminal id</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="RefundNoticeDestinations" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>Used for refund notice fax and e-mail sending and potentially SMS (phone)</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RefundNoticeDestination" maxOccurs="9">
+                <xs:complexType>
+                  <xs:choice>
+                    <xs:element name="Phone">
+                      <xs:complexType>
+                        <xs:attributeGroup ref="ota:TelephoneAttributesGroup" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Fax">
+                      <xs:complexType>
+                        <xs:attributeGroup ref="ota:TelephoneAttributesGroup" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Email" type="ota:EmailType" />
+                  </xs:choice>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="FormOfPayments" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="FormOfPayment" maxOccurs="99">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="FreeFlow" type="xs:string" />
+                  </xs:sequence>
+                  <xs:attributeGroup ref="ota:CurrencyAmountGroup" />
+                  <xs:attribute name="ApprovalCode" type="ota:AlphaNumericStringLength1to19">
+                    <xs:annotation>
+                      <xs:documentation>The approval code returned as part of an authorization process</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="AdditionalDataList" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="AdditionalData" type="att:AdditionalData" maxOccurs="99" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attributeGroup ref="ota:OTA_PayloadStdAttributes" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

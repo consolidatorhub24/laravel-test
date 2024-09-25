@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\RegisterIndexController;
 use App\Http\Controllers\Auth\ResetIndexController;
 use App\Http\Controllers\Auth\TwoFactorIndexController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FlightController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,7 @@ use Symfony\Contracts\Service\ResetInterface;
 */
 
 Route::get('/', HomeController::class)->name('home');
+Route::get('/test', [FlightController::class,'tryAmadeus'])->name('test-api');
 Route::get('/dashboard', DashboardController::class)->name('dashboard')->middleware('verified');
 // ->middleware(RequirePassword::using(null, 1));
 

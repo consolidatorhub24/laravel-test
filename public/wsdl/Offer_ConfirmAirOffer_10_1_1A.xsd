@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/POFRKQ_10_1_1A" xmlns="http://xml.amadeus.com/POFRKQ_10_1_1A" elementFormDefault="qualified">
+  <xs:element name="Offer_ConfirmAirOffer">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To request to verify a specific offer whose tatoo is provided</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="offerTatoo" type="ElementManagementSegmentType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Offer tatoo to be confirmed</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="passengerReassociation" minOccurs="0" maxOccurs="198">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">group for pax reconciliation between Pax PNR and passenger types prices at offer creation time</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="pricingRecordId" type="ItemReferencesAndVersionsType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Tatoo of one PQR</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="paxReference" minOccurs="0" type="ReferenceInformationType">
+                <xs:annotation>
+                  <xs:documentation xml:lang="en">Passenger selection to associate with selected Pricing Record</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ElementManagementSegmentType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the PNR segments/elements references and action to apply</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="reference" type="ReferencingDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Reference details</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="segmentName" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">PNR segment or element name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ItemReferencesAndVersionsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Exchange and link unique identifiers</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="referenceType" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">qualifies the type of the reference used.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="uniqueReference" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">The value of the reference (i.e. tatoo number)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferenceInformationType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Used to convey the passenger references.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="passengerReference" minOccurs="0" maxOccurs="99" type="ReferencingDetailsType_139051C">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Used to convey the passenger tatoo or display number.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferencingDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Tatooo</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="type" type="AlphaNumericString_Length1To10">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Amadeus codes :  OF for Offer element(non name, non segment) Tatoo  In this message we only expect OF since this message targets Offers</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="value" type="NumericInteger_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Number attributed by the Server to reference the PNR segment/element Limited to the time the PNR is worked (First retrieve - End of Transaction)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferencingDetailsType_139051C">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To provide reference identification.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="type" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Type of Passenger (PA for Adult, PI for Infant and P for both)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="value" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Tattoo of the Passenger name element</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AlphaNumericString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To35">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..35</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="35" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To10">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..10</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To35">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..35</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,35}" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!-- SchemaRules="2010/01"-->
+<!--Created with SchemaBuilder 4.2 by Amadeus S.A.S.-->
+<!--"Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved."-->
+<!--Build Key:
+1F8B080000000000000095934D6FDB300C86EFFA15422F3B0C71EC62E821800E6E9314C3968F2519760910A8169D0895254F948B7A45FFFB28DB59B3C3B00D08028A925F51CF4BDECF96B34DBE9B4D0FABA5B84EB36C945ED38F7F036501956C79F66192DD4CD294DF2F76EFD39422962FF2D0D680736DC0CA0A04250EB71275B18BE9E419157B90084BDAC35A16204E21D493F1F8B93289ACA4820693C25563569CA078DCD27F2545F00DB0C229400828ACB3715555606935EC55B5B46D5415B631861275EBF5F114C455DEABF2B577B5D710A46FB9B48ADF395B6A451A5A1AFED196CE5732686727BCB1B20927E7F50F50BC41E88E2B8D8571D878E018BC2E8269397DF3A01569249C00A57CC4CF976122138C6B63F826D6817C43D5FB2750C9155350CAC6847B5F472A4A94D22030E59A07035BF8DE802D602D4371EA5F07F6F69F90817D3BF3126D783DBC3C81477A14451E0C900C45F24817B4AFAC2493368D21642EFAD5AD3BD3BA8F63F41701E30A6906E2C61D95F6623AD9CF942E651176CE19DCCF7687A9C6206DB8238FC839F26CBF90FE1182B6C7FE0C762EE3FEB33B928C3D763568B5B2A66515F8230C80BA78AEC128DC3A1F7E81A33723959463A4F97B6E4A7E6B33F48CFD2F3AB5D3362C215C18E19D0B1770585F7844887142D2719A0D399C3B9F1B4D8A438746EF750138A5CEA11BA9097B6C58491FA2DA57AB0B1DDAA1FCE0A545D3F52351110417C783F22E5F8C5F14184DC54B6A98D78476592C4A5D8E0B75C7DD79467A4DCA7480BA01D5B660CF68C2AA097513E6CE28F02226181B8D163DBC77C8F5DB5C8C46AC4723B29C5DDC2FF2757E589525F84396DE501757525BB19A6FCE1E70E9418AEB9BEC9C106BDAFDF485D5D4EF1A4FE4634FB7B74064143DE9E80B851D08D93113FD25DDDCFA2AD7BE5BB3B31D7FD81E2C1659CA7E02AF38E449D2040000
+-->
+

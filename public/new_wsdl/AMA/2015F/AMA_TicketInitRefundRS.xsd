@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 rel. 2 sp2 (x64) (http://www.altova.com) by ﻿AMADEUS s.a.s. (AMADEUS s.a.s.) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://xml.amadeus.com/2010/06/TicketGTP_v3" xmlns:att="http://xml.amadeus.com/2010/06/TicketTypes_v2" xmlns:ota="http://www.opentravel.org/OTA/2003/05/OTA2010B" xmlns:ama="http://xml.amadeus.com/2010/06/Types_v2" xmlns:ns1="http://xml.amadeus.com/2010/06/TicketTypes_v2" targetNamespace="http://xml.amadeus.com/2010/06/TicketGTP_v3" elementFormDefault="qualified" attributeFormDefault="unqualified" version="3.000" id="AMA2015F">
+  <xs:import namespace="http://xml.amadeus.com/2010/06/Types_v2" schemaLocation="../2012F/AMA_CommonTypes_Proxy.xsd" />
+  <xs:import namespace="http://www.opentravel.org/OTA/2003/05/OTA2010B" schemaLocation="../../OTA/2010B/OTA_Proxy.xsd" />
+  <xs:import namespace="http://xml.amadeus.com/2010/06/TicketTypes_v2" schemaLocation="AMA_Ticket_GTP_CommonTypes_Proxy.xsd" />
+  <xs:element name="AMA_TicketInitRefundRS">
+    <xs:annotation>
+      <xs:documentation>Init refund client response</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:annotation>
+        <xs:documentation>Basic structure of any GTP webservice reply. Extend this type to implement a reply.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element name="GeneralReply">
+          <xs:complexType>
+            <xs:choice>
+              <xs:element name="Success">
+                <xs:complexType />
+              </xs:element>
+              <xs:element name="Errors" type="ama:GenericErrorsType" />
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+        <xs:sequence>
+          <xs:element name="FunctionalData" minOccurs="0">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ContractBundle" maxOccurs="99">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:choice>
+                        <xs:sequence>
+                          <xs:element name="Success">
+                            <xs:complexType />
+                          </xs:element>
+                          <xs:element name="Warnings" type="ama:GenericWarningsType" minOccurs="0" />
+                        </xs:sequence>
+                        <xs:element name="Errors" type="ama:GenericErrorsType" />
+                      </xs:choice>
+                      <xs:choice minOccurs="0">
+                        <xs:element name="ListDisplay">
+                          <xs:annotation>
+                            <xs:documentation>AIR: Will contain a list of duplicate documents (document having same ticket number)</xs:documentation>
+                          </xs:annotation>
+                          <xs:complexType>
+                            <xs:sequence maxOccurs="99">
+                              <xs:element name="Ticket">
+                                <xs:annotation>
+                                  <xs:documentation>The ticket number of the refundable documents, inclusive of airline and check digit.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                  <xs:attribute name="Number" type="att:AlphaNumericString_Length1To14" use="required">
+                                    <xs:annotation>
+                                      <xs:documentation>Ticket number to refund</xs:documentation>
+                                    </xs:annotation>
+                                  </xs:attribute>
+                                  <xs:attribute name="Type" type="att:AlphaNumericString_Length1To3">
+                                    <xs:annotation>
+                                      <xs:documentation>Document/message name, coded</xs:documentation>
+                                    </xs:annotation>
+                                  </xs:attribute>
+                                </xs:complexType>
+                              </xs:element>
+                              <xs:element name="Documents" minOccurs="0">
+                                <xs:complexType>
+                                  <xs:sequence>
+                                    <xs:element name="Document" maxOccurs="99">
+                                      <xs:complexType>
+                                        <xs:sequence>
+                                          <xs:element name="SequenceNumber" type="att:AlphaNumericString_Length1To19">
+                                            <xs:annotation>
+                                              <xs:documentation xml:lang="en">Item identification within the office</xs:documentation>
+                                            </xs:annotation>
+                                          </xs:element>
+                                          <xs:element name="ReportingOffice" type="att:ReportingOfficeType">
+                                            <xs:annotation>
+                                              <xs:documentation xml:lang="en">AIR: Reporting Office Identification</xs:documentation>
+                                            </xs:annotation>
+                                          </xs:element>
+                                          <xs:element name="ReferenceDetails" minOccurs="0">
+                                            <xs:annotation>
+                                              <xs:documentation xml:lang="en">Refund references</xs:documentation>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                              <xs:sequence>
+                                                <xs:element name="ReferenceDetail" maxOccurs="2">
+                                                  <xs:annotation>
+                                                    <xs:documentation xml:lang="en">REFERENCING DETAILS The 2 instances will be used for: - the refund number (code REF) - the data source (code DIS)</xs:documentation>
+                                                  </xs:annotation>
+                                                  <xs:complexType>
+                                                    <xs:sequence>
+                                                      <xs:element name="Type" type="att:AlphaNumericString_Length1To19">
+                                                        <xs:annotation>
+                                                          <xs:documentation xml:lang="en">Type of data reference</xs:documentation>
+                                                        </xs:annotation>
+                                                      </xs:element>
+                                                      <xs:element name="Value" type="att:AlphaNumericString_Length1To35">
+                                                        <xs:annotation>
+                                                          <xs:documentation xml:lang="en">Value of data reference</xs:documentation>
+                                                        </xs:annotation>
+                                                      </xs:element>
+                                                    </xs:sequence>
+                                                  </xs:complexType>
+                                                </xs:element>
+                                              </xs:sequence>
+                                            </xs:complexType>
+                                          </xs:element>
+                                          <xs:element name="TransactionCode" type="att:AlphaNumericString_Length1To4">
+                                            <xs:annotation>
+                                              <xs:documentation xml:lang="en">Reporting Transaction Code</xs:documentation>
+                                            </xs:annotation>
+                                          </xs:element>
+                                          <xs:element name="DocumentStatus" type="ota:AlphaLength3">
+                                            <xs:annotation>
+                                              <xs:documentation xml:lang="en">Will contain the status of the document. The status can be one of the following : "CNF" : CONFIRMED "PND" : PENDING "CAN" : CANCELLED "RFD" : REFUNDED "UNK" : UNKNOWN</xs:documentation>
+                                            </xs:annotation>
+                                          </xs:element>
+                                          <xs:element name="Passenger" type="att:PassengerType">
+                                            <xs:annotation>
+                                              <xs:documentation xml:lang="en">Information on the passenger to refund</xs:documentation>
+                                            </xs:annotation>
+                                          </xs:element>
+                                        </xs:sequence>
+                                      </xs:complexType>
+                                    </xs:element>
+                                  </xs:sequence>
+                                </xs:complexType>
+                              </xs:element>
+                            </xs:sequence>
+                          </xs:complexType>
+                        </xs:element>
+                        <xs:element name="RefundDetails" type="att:RefundDetailsType" />
+                      </xs:choice>
+                    </xs:sequence>
+                    <xs:attribute name="ID" type="xs:nonNegativeInteger" use="required">
+                      <xs:annotation>
+                        <xs:documentation>Identifies ContractBundle Element. Used for Update Refund query.</xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="Code" type="ota:OTA_CodeType">
+                      <xs:annotation>
+                        <xs:documentation>In case of multi-provider refunds, this attribute is used to identify the provider corresponding to each success element.</xs:documentation>
+                      </xs:annotation>
+                    </xs:attribute>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:sequence>
+      <xs:attributeGroup ref="ota:OTA_PayloadStdAttributes" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

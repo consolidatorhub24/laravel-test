@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/POFRVQ_10_1_1A" xmlns="http://xml.amadeus.com/POFRVQ_10_1_1A" elementFormDefault="qualified">
+  <xs:element name="Offer_VerifyOffer">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To request to verify a specific offer whose tatoo is provided</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="offerTatoo" type="ElementManagementSegmentType">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">Offer tatoo to be verified</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ElementManagementSegmentType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the PNR segments/elements references and action to apply</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="reference" type="ReferencingDetailsType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Reference details</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="segmentName" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">PNR segment or element name</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferencingDetailsType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Tatooo</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="type" type="AlphaNumericString_Length1To10">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Amadeus codes :  OF for Offer element(non name, non segment) Tatoo  In this message we only expect OF since this message targets Offers</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="value" type="NumericInteger_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">Number attributed by the Server to reference the PNR segment/element Limited to the time the PNR is worked (First retrieve - End of Transaction)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AlphaNumericString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To10">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..10</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To35">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..35</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,35}" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!-- SchemaRules="2010/01"-->
+<!--Created with SchemaBuilder 4.2 by Amadeus S.A.S.-->
+<!--"Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved."-->
+<!--Build Key:
+1F8B08000000000000009593DF6BDB3010C7DFF55788BEEC61C4B1CBE843400F6E9394C1F26369D6BD04826A9D135159F27472A957FABFF7643B6B06836D10C2E9247F75FA7CEF6E67CBD926DFCEA6FBD5525CA659364A2FE9C7BF83B2804AB63CFB34C9AE2669C66F17DB8F693A4953962FF2D0D680736DC0CA0A0425F6D71275B18DE9E419157B90084BDAC35A16208E21D493F1F8B93289ACA4820693C25563561CA178BCA3FF4A8AE01B6085538010505867E3AAAAC0D26AD8AB6A69DBA82A6C630C25EAD6EBC331888BBC57E56BEF6AAF2148DF726915BF71B6D48A34B434FCB32D9DAF64D0CE4E786365138ECEEB9FA07883D01D571A0BE3B0F1C031785D04D372FAE6412BD24838014AF9889F2EC3442618D7C6F04DAC03F986AAF74FA0920BA6A0948D09B7BE8E549428A54160CA350F06EEE04703B680B50CC5B17F1DD8EB7F4206F6FDCC4BB4E175FFF2041EE951147930403214C9035DD0BEB2924CDA348690B9E857B7EE4CEB3E8ED15F048C2BA419881B7750DA8BE9643753BA9445D83A677037DBEEA71A83B4E1863C22E7C8B3DD42FA4708DA1EFA33D8B98CBB2FEE4032F6D0D5A0D5CA9A9655E00F3000EAE2B906A3F0CEF9F00B1CBD19A9A41C23CDDF7353F25B9BA167EC7FD1A99DB66109E1CC08EF5C3883C3FAC223428C13928ED36CC8E1DCF9DC68521C3A347AAF0BC029750EDD484DD863C34AFA10D5BE595DE8D00EE5072F2D9AAE1F898A20B8381E94B7F962FCA2C0682A5E52C3BC26B4CB6251EA7C5CA83B6E4E33D26B52A603D40DA8B6057B4613564DA89B307746811731C1D868B4E8E17D40AEDFE76234623D1A91E5ECEC7E91AFF3FDAA2CC1EFB3F48ABAB892DA8AD57C73F2804B0F525C5E65A78458D3EEFD575653BF6B3C928F3DDDDE029151F4A4A32F14762064C74CF497DC83D765DBC5EC64C51FB6066B4596B237795A9704CA040000
+-->
+

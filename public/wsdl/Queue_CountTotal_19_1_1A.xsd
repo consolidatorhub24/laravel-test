@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.amadeus.com/QCSDRQ_19_1_1A" xmlns="http://xml.amadeus.com/QCSDRQ_19_1_1A" elementFormDefault="qualified">
+  <xs:element name="Queue_CountTotal">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Queue Count Standard Display Read Query message
+request of standard display PNR queue counts
+</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="queueingOptions" type="SelectionDetailsTypeI">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">used to specify the exact requirements of the counts to be returned</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="targetOffice" minOccurs="0" type="AdditionalBusinessSourceInformationTypeI">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">used to specify the target office for which the queue count is to be displayed</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="queueNumber" minOccurs="0" type="QueueInformationTypeI">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">used to specify the queue if required</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="categorySelection" minOccurs="0" type="SubQueueInformationTypeI">
+          <xs:annotation>
+            <xs:documentation xml:lang="en">used to select the category</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="AdditionalBusinessSourceInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify additional originator and source information.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="sourceType" type="SourceTypeDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">the office we are targetting</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="originatorDetails" type="OriginatorIdentificationDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">contains the office ID</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OriginatorIdentificationDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify the originator of the travel request.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="inHouseIdentification1" type="AlphaNumericString_Length1To9">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">the office that is being targetted</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueueInformationDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify the name of the queue,  position of items, count, maximum items allowed, status and related queues.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="number" type="NumericInteger_Length1To2">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">queue number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueueInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify details of a reservation queue.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="queueDetails" type="QueueInformationDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">queue identification</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SelectionDetailsInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify a selected option and associated information.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="option" type="AlphaString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">primary use - to select the specific type of queue count to be displayed</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SelectionDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify the details for making a selection.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="selectionDetails" type="SelectionDetailsInformationTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">the type of count we are displaying</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SourceTypeDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify the type of source.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="sourceQualifier1" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">not needed - but mandatory field So just stick a 4 in it !!</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SubQueueInformationDetailsTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To identify the name of the sub queue, count, maximum items allowed and status.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="identificationType" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">E for every category    A for cats with items to be worked C for category number N for nickname CN for both category number and nickname numeric for date range</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="itemNumber" minOccurs="0" type="AlphaNumericString_Length1To3">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">category number</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="itemDescription" minOccurs="0" type="AlphaNumericString_Length1To35">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">used for nickname on inbound used for category name on outbound</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SubQueueInformationTypeI">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">To specify details of a reservation sub queue</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="subQueueInfoDetails" type="SubQueueInformationDetailsTypeI">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">identifies the category or categories.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AlphaString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: a..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To3">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..3</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="3" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To9">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..9</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="9" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NumericInteger_Length1To2">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: n..2</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="-?[0-9]{1,2}" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AlphaNumericString_Length1To35">
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Format limitations: an..35</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="35" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!-- SchemaRules="2010/01"-->
+<!--Created with SchemaBuilder 5.1.0 by Amadeus S.A.S.-->
+<!--"Amadeus Proprietary and Confidential Information: unauthorized use and disclosure strictly forbidden. 2010 - Amadeus s.a.s - All Rights Reserved."-->
+<!--Build Key:
+1F8B080000000000000095534B6FDB3810BEF35710BDEC61615B4E76B7A8011E54DBC916A8F3B0D59B0163228E6DA214A9E59041B441FEFB0E25A54D4FED5E847950F3F8BE6FAED737EB6D59AD5787DB1B7551CC3F4C8ACBC9C55FB24A481A3A595C2E8A3F177FBC97D79BEAF7A2581485283765EC5AA42B63D141838A03878F40A6AE7278FA445A3C00E10DE7A8851AD539C676319B3D35760A0D684C34AD7D33130FC9698B2B13D48C3046E34E34D3A626519FB1FEBAE36F032A8684A2F61AF90929E75DF69A061D7B63AE69C175B99D72C95A0EB45D30A77354EFCAA19DBC0BBE0D0623844E82D372E9DDD168AE61C0CA4FEEE84303D178B790C9418A671FCCBFA86522EC9F6B43B5F594024A8AC1D4D17692FF79309A6B4C25E356C8897C6D46539852F6AD95DB3C07C92D4F1F1E514FDF098D4748365E8736C3A5D5112CA1D03E3D58DCE13F095D8D7710EBF39841F7F197C044F7FDCD7326E8E5F0FC8881782BB6025AE4326CC1893B742FE2C8F46D9365CC7C66B2F77B3AFB9FB3F59302D6D76047C8AD3F69A671B9D8FFBD2E577BD4E608758CDE5BDAAFABC3CA50041797CC14F3C7CCED3710BE6266BCEADF50CF35ED3FFB13D772A77E10A36F9DED4483E1842318BD7D65D06ADAF910BFC1C78B13CF5552C6F4C7D88A593776548EFB5F10B5DEB8788371A0A3175BF03EBE41A8F7B380A7625821234AF9908A59311F6374E543690DD71E159BB5606AA4152B897BB3280714A9811073DD2FCED42676E322318023DBEB93F1518C35CDC6CA55B9993D6BB486D70016D0CB94B3228FA7DF9E0F8B65F97A33434D8EF450F5976C5C2D9EC8C6DB14DB14AFBCD518540E0831996C06187F2369BEDFC964220690D4BC146FFAABF2AE3CDC274C78987FB8605537609CBAFFB216F8D4326107A0C36A7DADAA2D874682240404357FFFEAABFBE56EB5BD172D5F84A133733C203FD0A3E66C3D9ACC199B3D34D0A3A886B64B9F5CAC7C042B5E591A327D62C732D410340BB2B5D06D11342743372E294635A8F9A5F80FE7B03D601A050000
+-->
+
